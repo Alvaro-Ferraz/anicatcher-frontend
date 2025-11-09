@@ -3,7 +3,6 @@ import Springs from '../../assets/images/Springs-banner.jpg';
 import Fall from '../../assets/images/Fall-banner.jpg';
 import Summer from '../../assets/images/Summer-banner.jpg';
 
-// Função para determinar a temporada atual com base no mês
 const getTemporadaAtual = () => {
   const hoje = new Date();
   const mes = hoje.getMonth() + 1;

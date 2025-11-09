@@ -24,7 +24,6 @@ const AnimeCardSkeleton: React.FC<AnimeCardSkeletonProps> = ({
           transition={{ duration: 0.6 }}
           className="flex flex-col gap-2"
         >
-          {/* Imagem fake */}
           <div
             className="w-full aspect-[3/4] rounded-md animate-pulse"
             style={{
@@ -33,7 +32,6 @@ const AnimeCardSkeleton: React.FC<AnimeCardSkeletonProps> = ({
             }}
           />
 
-          {/* Título fake */}
           <div
             className="h-5 w-3/4 rounded-md animate-pulse"
             style={{
