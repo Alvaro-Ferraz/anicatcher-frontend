@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback, useRef } from 'react';
-import ClientLayout from '../../components/layout';
+import ClientLayout from '../../components/layout/ClientLayout';
 import axios from 'axios';
 import AnimeCardGrid from '../../components/AnimeCardGrid';
 import AnimeSearchFilter from '../../components/SearchAnimeFilter';
@@ -78,7 +78,6 @@ export default function AnimeSearchPage() {
   const normalizeStr = (v: string | number | undefined) =>
     typeof v === 'string' ? v.trim().toLowerCase() : '';
 
-  // filtros aceitos pelo endpoint /seasons (conforme doc)
   const seasonAllowedFilters = ['tv', 'movie', 'ova', 'special', 'ona', 'music'];
 
   const buildParams = (customPage?: number) => {
@@ -108,7 +107,6 @@ export default function AnimeSearchPage() {
       if (validStatus.includes(normStatus)) params.status = normStatus;
     }
 
-    // define selectedYear quando o usuário escolheu ano ou quando escolheu temporada (assume ano atual)
     let selectedYear: string | number | undefined;
     if (hasYear) {
       selectedYear = year;

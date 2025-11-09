@@ -26,7 +26,6 @@ export default function AnimeRecommendations({ recommendations }: Props) {
 
   const displayedRecommendations = showAll ? recommendations : recommendations.slice(0, initialCards)
 
-  // Forçar atualização do grid ao redimensionar a tela
   useEffect(() => {
     const handleResize = () => {
       setTimeout(() => { }, 0);
