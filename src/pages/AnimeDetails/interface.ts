@@ -4,6 +4,7 @@ export interface Anime {
   title_japanese?: string;
   title_english?: string;
   title_synonyms?: string[];
+  synopsis?: string;
   trailer?: {
     images?: {
       maximum_image_url?: string;
