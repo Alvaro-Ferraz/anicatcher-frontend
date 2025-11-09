@@ -108,7 +108,7 @@ const AnimeDetailLayout: React.FC<React.PropsWithChildren<{}>> = ({ }) => {
                         <div className="flex-1 w-full text-center md:text-left">
                             <h1 className="text-2xl md:text-2xl font-medium text-[#9bb5cc] mb-2">{anime.title}</h1>
                             <p className="text-sm text-gray-500 mb-4">{anime.year || 'Ano desconhecido'} • {anime.genres?.map((g: any) => g.name).join(', ') || 'Gêneros desconhecidos'} • {anime.episodes || 'N/A'} episódios</p>
-                            <p className="text-gray-400 hover:text-gray-300 md:text-left">{anime.synopsis || 'Sinopse não disponível.'}</p>
+                            <p className="text-gray-400 hover:text-gray-300 md:text-left">{anime.title_synonyms || 'Sinopse não disponível.'}</p>
                         </div>
                     </div>
 
