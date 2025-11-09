@@ -30,7 +30,6 @@ const AnimeDetailLayout: React.FC<React.PropsWithChildren<{}>> = ({ }) => {
     const location = useLocation();
 
     const [anime, setAnime] = useState<Anime | null>(null);
-    console.log(anime);
     const [characters, setCharacters] = useState<any[]>([]);
     const [staff, setStaff] = useState<any[]>([]);
     const [videos, setVideos] = useState<Episode[]>([]);
