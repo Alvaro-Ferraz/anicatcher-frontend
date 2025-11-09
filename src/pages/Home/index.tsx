@@ -1,6 +1,6 @@
-import AnimeGenres from '../../components/anime-genres-filter/anime-genres-filter';
-import AnimeCardGrid from '../../components/anime-card-grid/anime-card-grid';
-import ClientLayout from '../../components/layout/index';
+import AnimeGenres from '../../components/AnimeGenresFilter';
+import AnimeCardGrid from '../../components/AnimeCardGrid';
+import ClientLayout from '../../components/layout/ClientLayout/index';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 
@@ -125,7 +125,6 @@ export const Home = () => {
         )}
       </div>
 
-      {/* Seção Popular this season */}
       <AnimeCardGrid
         title="Popular this season"
         animes={seasonAnimes}
@@ -136,7 +135,6 @@ export const Home = () => {
         isLoading={isLoadingSeason}
       />
       <div className="mt-10"></div>
-      {/* Seção Upcoming next season */}
       <AnimeCardGrid
         title="Upcoming next season"
         animes={nextSeason}
@@ -147,7 +145,6 @@ export const Home = () => {
         isLoading={isLoadingNextSeason}
       />
 
-      {/* Seção Filtrada por Gênero */}
       <section className="mt-10">
         <div className="flex justify-between items-center mb-5 scroll-bar">
           <AnimeGenres genres={genres} onGenreSelect={handleGenreSelect} />

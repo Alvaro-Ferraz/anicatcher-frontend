@@ -22,8 +22,8 @@ A seção de recomendações conta com animações suaves que expandem os cards 
 
 - ✅ Criar **página de listagem de todos os animes**
 - ✅ Criar **seção de recomendações com animação suave**
+- ✅ Implementar **busca por nome, ID, gênero etc.**
 - ⏳ Criar **página para mangás**
-- ⏳ Implementar **busca por nome, ID, gênero etc.**
 - ⏳ Melhorar a **sidebar** para navegação entre animes, mangás, favoritos e configurações
 
 ---

@@ -1,8 +1,8 @@
 import { useState } from "react"
 import type { ReactNode } from "react"
-import logo from '../../assets/images/Logo-ani.3.png';
-import avatar from '../../assets/images/avatar.png';
-import TemporadaAtual from '../../components/anime-season/anime-season';
+import logo from '../../../assets/images/Logo-ani.3.png';
+import avatar from '../../../assets/images/avatar.png';
+import TemporadaAtual from '../../AnimeSeason';
 import { Link } from "react-router-dom";
 
 
@@ -18,7 +18,6 @@ const ClientLayout = ({ children }: { children: ReactNode }) => {
 
   return (
     <div className="bg-body min-h-screen text-white">
-      {/* Header */}
       <header className="flex justify-between items-center p-4 bg-sidebar border-b border-gray-700 fixed top-0 left-0 w-full z-10">
         <div className="flex items-center space-x-3 sm:space-x-6 flex-1 min-w-0">
           <button
@@ -42,7 +41,6 @@ const ClientLayout = ({ children }: { children: ReactNode }) => {
             className="w-[50px] h-[50px] sm:w-[60px] sm:h-[60px] rounded-full flex-shrink-0"
           />
 
-          {/* Navigation - Hidden on mobile, visible on larger screens */}
           <div className="hidden md:flex space-x-4 lg:space-x-6 min-w-0">
             <Link to="/" className="text-sm text-white hover:text-gray-300 whitespace-nowrap">
               Home
@@ -59,16 +57,13 @@ const ClientLayout = ({ children }: { children: ReactNode }) => {
           </div>
         </div>
 
-        {/* Right side - Search and Avatar */}
         <div className="flex items-center space-x-2 sm:space-x-4 flex-shrink-0">
-          {/* Search - Hidden on very small screens, visible on sm+ */}
           <input
             type="text"
             placeholder="Search..."
             className="hidden sm:block bg-utils border text-white border-gray-600 px-2 py-1 rounded text-sm w-32 md:w-40 lg:w-48"
           />
 
-          {/* Search icon for mobile */}
           <button className="sm:hidden text-white focus:outline-none">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -99,11 +94,8 @@ const ClientLayout = ({ children }: { children: ReactNode }) => {
         </div>
       </header>
 
-      {/* Sidebar desktop, menu mobile */}
       <div className="flex pt-[68px] overflow-x-hidden">
-        {/* Sidebar só desktop/tablet */}
         <div className="relative group hidden sm:block">
-          {/* Hitbox para o Hover */}
           <div
             className="fixed top-[68px] left-0 h-[calc(100vh-68px)] transition-all duration-500 ease-in-out"
             style={{ width: isSidebarExpanded ? "250px" : "80px" }}
@@ -112,7 +104,6 @@ const ClientLayout = ({ children }: { children: ReactNode }) => {
               className="bg-sidebar p-5 h-full border-r border-gray-700 overflow-y-auto transition-all duration-500 ease-in-out sidebar"
               style={{ width: sidebarWidth }}
             >
-              {/* Sidebar Content - Hidden when collapsed */}
               {isSidebarExpanded && (
                 <>
                   <TemporadaAtual />
@@ -190,7 +181,6 @@ const ClientLayout = ({ children }: { children: ReactNode }) => {
           </div>
         </div>
 
-        {/* Menu mobile */}
         {isMobileMenuOpen && (
           <div className="fixed inset-0 z-50 bg-black bg-opacity-70 flex sm:hidden">
             <div className="bg-sidebar w-64 h-full p-6 flex flex-col">
@@ -209,12 +199,11 @@ const ClientLayout = ({ children }: { children: ReactNode }) => {
                 </svg>
               </button>
 
-              {/* Navigation links in mobile menu */}
               <div className="mb-6 space-y-4">
                 <Link to="/" className="block text-white hover:text-gray-300 py-2">
                   Home
                 </Link>
-                <Link to="#" className="block text-white hover:text-gray-300 line-through py-2">
+                <Link to="/anime/search" className="block text-white hover:text-gray-300 py-2">
                   Animelist
                 </Link>
                 <Link to="#" className="block text-white hover:text-gray-300 line-through py-2">
@@ -275,12 +264,10 @@ const ClientLayout = ({ children }: { children: ReactNode }) => {
                 </div>
               </div>
             </div>
-            {/* Clique fora fecha o menu */}
             <div className="flex-1" onClick={() => setIsMobileMenuOpen(false)} />
           </div>
         )}
 
-        {/* Conteúdo principal ocupa toda a tela no mobile */}
         <div
           className="flex-1 sm:px-6 transition-all duration-500 ease-in-out ml-0 sm:ml-[50px] sm:data-[expanded=true]:ml-[280px] overflow-x-hidden"
           data-expanded={isSidebarExpanded}

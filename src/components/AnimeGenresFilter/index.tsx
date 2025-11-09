@@ -10,9 +10,8 @@ const AnimeGenres: React.FC<AnimeGenresProps> = ({ genres, onGenreSelect }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedGenre, setSelectedGenre] = useState<{ mal_id: number; name: string } | null>(null);
 
-  // Função para alternar o dropdown sem preventDefault
   const toggleDropdown = useCallback((e: React.MouseEvent | React.TouchEvent) => {
-    e.stopPropagation(); // Mantém apenas stopPropagation para evitar propagação
+    e.stopPropagation();
     setIsOpen((prev) => !prev);
   }, []);
 
@@ -22,7 +21,6 @@ const AnimeGenres: React.FC<AnimeGenresProps> = ({ genres, onGenreSelect }) => {
     setIsOpen(false);
   };
 
-  // Fechar o dropdown ao clicar fora
   useEffect(() => {
     const handleClickOutside = () => setIsOpen(false);
     if (isOpen) {
