@@ -8,6 +8,7 @@ import { StaffDetailsPage } from "./pages/Staff/StaffDetailsPage";
 import { Overview } from "./pages/AnimeDetails/index.tsx";
 import AnimeDetailLayout from "./components/layout/AnimeDetailLayout/index.tsx";
 import  LoginForm  from "./pages/Login/index.tsx";
+import VoiceStart from "./pages/VoiceStart/index.tsx";
 
 export const App = () => {
     const router = createBrowserRouter([
@@ -22,6 +23,10 @@ export const App = () => {
         {
             path: "/home",
             element: <Home />,
+        },
+        {
+            path: "/voice-start",
+            element: <VoiceStart />,
         },
         {
             path: "/anime/search",

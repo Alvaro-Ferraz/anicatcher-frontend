@@ -1,5 +1,6 @@
 import AnimeGenres from '../../components/AnimeGenresFilter';
 import AnimeCardGrid from '../../components/AnimeCardGrid';
+import HeroCarousel from '../../components/HeroCarousel';
 import ClientLayout from '../../components/layout/ClientLayout/index';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
@@ -102,27 +103,9 @@ export const Home = () => {
 
   return (
     <ClientLayout>
-      {/* Hero Banner */}
-      <div className="grid grid-cols-4 gap-6 mt-10 mb-10">
-        {isLoadingPopular ? (
-          [...Array(4)].map((_, i) => (
-            <div key={i} className="rounded-lg overflow-hidden shadow-lg animate-pulse">
-              <div className="w-full h-[250px] bg-gray-700"></div>
-            </div>
-          ))
-        ) : popularAnimes.length > 0 ? (
-          popularAnimes.map((anime: any, i: number) => (
-            <div key={i} className="rounded-lg overflow-hidden shadow-lg">
-              <img
-                src={anime.images?.jpg?.large_image_url || 'https://via.placeholder.com/300x250'}
-                alt={anime.title || `Anime ${i + 1}`}
-                className="w-full h-[250px] object-cover transition-transform duration-300 hover:scale-105"
-              />
-            </div>
-          ))
-        ) : (
-          <div className="col-span-4 text-center text-gray-400">Dados indisponíveis no momento.</div>
-        )}
+      {/* Hero Banner (Carousel) */}
+      <div className="mt-10 mb-10">
+        <HeroCarousel animes={popularAnimes} isLoading={isLoadingPopular} />
       </div>
 
       <AnimeCardGrid

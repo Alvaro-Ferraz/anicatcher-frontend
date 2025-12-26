@@ -1,8 +1,10 @@
 
 import React, { useState } from 'react';
-import axios from 'axios';
 import { z } from 'zod';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { loginMock } from '../../auth/mockAuth';
 
 const LoginSchema = z.object({
     identifier: z.string().min(3, 'Informe seu usuário ou e-mail.'),
@@ -18,6 +20,7 @@ const LoginForm: React.FC = () => {
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState<string | null>(null);
     const [showPassword, setShowPassword] = useState(false);
+    const navigate = useNavigate();
 
     // Register state + schema
     const [isRegister, setIsRegister] = useState(false);
@@ -60,9 +63,10 @@ const LoginForm: React.FC = () => {
 
         setLoading(true);
         try {
-            // Simulação de envio - substituir pela sua rota de autenticação
-            await axios.post('/api/auth/login', parsed.data);
+            await loginMock(parsed.data.identifier, parsed.data.password);
             setSuccess('Login realizado com sucesso.');
+            // redireciona para a página de ativação por voz
+            navigate('/voice-start');
         } catch (err) {
             setErrors({ identifier: 'Erro ao autenticar. Verifique suas credenciais.' });
         } finally {
