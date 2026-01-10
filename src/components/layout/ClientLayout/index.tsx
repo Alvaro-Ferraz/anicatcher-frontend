@@ -41,8 +41,8 @@ const ClientLayout = ({ children }: { children: ReactNode }) => {
             className="w-[50px] h-[50px] sm:w-[60px] sm:h-[60px] rounded-full flex-shrink-0"
           />
 
-          <div className="hidden md:flex space-x-4 lg:space-x-6 min-w-0">
-            <Link to="/" className="text-sm text-white hover:text-gray-300 whitespace-nowrap">
+            <div className="hidden md:flex space-x-4 lg:space-x-6 min-w-0">
+            <Link to="/home" className="text-sm text-white hover:text-gray-300 whitespace-nowrap">
               Home
             </Link>
             <Link to="/anime/search" className="text-sm text-white hover:text-gray-300 whitespace-nowrap">
@@ -200,7 +200,7 @@ const ClientLayout = ({ children }: { children: ReactNode }) => {
               </button>
 
               <div className="mb-6 space-y-4">
-                <Link to="/" className="block text-white hover:text-gray-300 py-2">
+                <Link to="/home" className="block text-white hover:text-gray-300 py-2">
                   Home
                 </Link>
                 <Link to="/anime/search" className="block text-white hover:text-gray-300 py-2">
