@@ -1,6 +1,6 @@
 import AnimeGenres from '../../components/AnimeGenresFilter';
 import AnimeCardGrid from '../../components/AnimeCardGrid';
-import HeroCarousel from '../../components/HeroCarousel';
+import RecentEpisodesShowcase from '../../components/RecentEpisodesShowcase';
 import ClientLayout from '../../components/layout/ClientLayout/index';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
@@ -12,30 +12,31 @@ export const Home = () => {
   const [seasonAnimes, setSeasonAnimes] = useState<any[]>([]);
   const [nextSeason, setNextSeason] = useState<any[]>([]);
   const [filteredAnimes, setFilteredAnimes] = useState<any[]>([]);
-  const [popularAnimes, setPopularAnimes] = useState<any[]>([]);
   const [selectedGenre, setSelectedGenre] = useState('Todos');
   const [isLoadingSeason, setIsLoadingSeason] = useState(true);
   const [isLoadingNextSeason, setIsLoadingNextSeason] = useState(true);
   const [isLoadingFiltered, setIsLoadingFiltered] = useState(true);
-  const [isLoadingPopular, setIsLoadingPopular] = useState(true);
+  const getCurrentSeason = () => {
+    const date = new Date();
+    const month = date.getMonth() + 1;
+    if (month >= 1 && month <= 3) return { season: 'Winter', year: date.getFullYear() };
+    if (month >= 4 && month <= 6) return { season: 'Spring', year: date.getFullYear() };
+    if (month >= 7 && month <= 9) return { season: 'Summer', year: date.getFullYear() };
+    return { season: 'Fall', year: date.getFullYear() };
+  };
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         setIsLoadingSeason(true);
-        setIsLoadingPopular(true);
 
         const seasonResponse = await axios.get('https://api.jikan.moe/v4/seasons/now', { timeout: 5000 });
         const seasonData = seasonResponse.data.data;
         setSeasonAnimes(seasonData);
         setFilteredAnimes(seasonData);
 
-        const sortedByPopularity = [...seasonData].sort((a: any, b: any) => b.members - a.members).slice(0, 4);
-        setPopularAnimes(sortedByPopularity);
-
         setIsLoadingSeason(false);
         setIsLoadingFiltered(false);
-        setIsLoadingPopular(false);
 
         await delay(1000);
 
@@ -63,7 +64,6 @@ export const Home = () => {
         setIsLoadingSeason(false);
         setIsLoadingNextSeason(false);
         setIsLoadingFiltered(false);
-        setIsLoadingPopular(false);
       }
     };
 
@@ -103,9 +103,9 @@ export const Home = () => {
 
   return (
     <ClientLayout>
-      {/* Hero Banner (Carousel) */}
+      {/* Episódios Recentes */}
       <div className="mt-10 mb-10">
-        <HeroCarousel animes={popularAnimes} isLoading={isLoadingPopular} />
+        <RecentEpisodesShowcase />
       </div>
 
       <AnimeCardGrid
@@ -114,7 +114,7 @@ export const Home = () => {
         columns={6}
         rows={2}
         showViewAll={true}
-        viewAllLink="#"
+        viewAllLink={`/anime/search?season=${getCurrentSeason().season}`}
         isLoading={isLoadingSeason}
       />
       <div className="mt-10"></div>
@@ -124,7 +124,7 @@ export const Home = () => {
         columns={6}
         rows={1}
         showViewAll={true}
-        viewAllLink="#"
+        viewAllLink={`/anime/search?status=Upcoming`}
         isLoading={isLoadingNextSeason}
       />
 
@@ -138,7 +138,7 @@ export const Home = () => {
           columns={6}
           rows={2}
           showViewAll={true}
-          viewAllLink="#"
+          viewAllLink={`/anime/search`}
           isLoading={isLoadingFiltered}
         />
       </section>
